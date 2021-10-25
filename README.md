@@ -100,7 +100,7 @@ close the minimal starter. You may decide to change the signature of your
 `__EntryPoint` application, it may be beneficial to use
 `(function(): Awaitable<void>)` for a while and dual purpose them as route
 targets and `__EntryPoint` targets. You'll have to put the parsed information
-into a static variable (just like `HH\\global_get() is used).
+into a static variable (just like `HH\\global_get()` is used).
 
 ```HACK
 type RequestVariables = dict<string, LecofInterfaces\ParsedVariable<mixed>>;
