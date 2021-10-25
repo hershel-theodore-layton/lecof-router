@@ -1,0 +1,1 @@
+/** lecof-router is MIT licensed, see /LICENSE. */
