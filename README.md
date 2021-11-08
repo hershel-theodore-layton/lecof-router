@@ -52,7 +52,7 @@ create an implementation of `VariableParser`, which knows how to turn raw text
 into your `ParsedVariable` of choice.
 
 Last but not least, this library is meant to be extended. If your needs are not
-met by the included `Filter` classes, you can write your own in a a handful of
+met by the included `Filter` classes, you can write your own in a handful of
 lines. Maybe you have a lot of endpoints that should be routed to without a file
 extension like `/about`, but they need to keep working with an extension for
 backwards compatibility. You can implement your own:
@@ -117,7 +117,9 @@ async function my_web_entry_point_async(): Awaitable<void> {
     // Only construct the /api subtree if we need it.
     Lecof\literal('api', Lecof\lazy(api_routes<>)),
     // Static resource not found, we can short circuit here.
-    Lecof\literal('static', Lecof\done(four_oh_four_async<>)),
+    Lecof\literal('static', Lecof\ignore_trailing_path(Lecof\done(
+      four_oh_four_async<>,
+    ))),
     Lecof\lazy(web_routes<>),
   );
 
