@@ -3,9 +3,7 @@ namespace HTL\Lecof\_Private;
 
 use namespace HTL\LecofInterfaces;
 
-final class IgnoreTrailingPathFilter<T as nonnull>
-  implements LecofInterfaces\Filter<T> {
-
+final class IgnoreTrailingPathFilter<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(private LecofInterfaces\Filter<T> $next) {}
 
   public function filter(

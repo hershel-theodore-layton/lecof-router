@@ -3,8 +3,7 @@ namespace HTL\Lecof\_Private;
 
 use namespace HTL\LecofInterfaces;
 
-final class MergedFilter<T as nonnull> implements LecofInterfaces\Filter<T> {
-
+final class MergedFilter<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(
     private LecofInterfaces\Filter<T> $first,
     private variadic<LecofInterfaces\Filter<T>> $rest,

@@ -3,7 +3,7 @@ namespace HTL\Lecof\Tests;
 
 use namespace HTL\LecofInterfaces;
 
-final class VariableHolder<T> implements LecofInterfaces\ParsedVariable<T> {
+final class VariableHolder<+T> implements LecofInterfaces\ParsedVariable<T> {
   public function __construct(
     private string $name,
     private string $rawValue,

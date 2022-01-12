@@ -3,8 +3,7 @@ namespace HTL\Lecof\_Private;
 
 use namespace HTL\LecofInterfaces;
 
-final class DoneFilter<T as nonnull> implements LecofInterfaces\Filter<T> {
-
+final class DoneFilter<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(private T $done) {}
 
   public function filter(

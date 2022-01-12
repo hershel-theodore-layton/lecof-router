@@ -11,7 +11,7 @@ use namespace HTL\Lecof\_Private;
  * If `$next->filter()` returns null, null is returned.
  * Else a `ParsedVariable` from `$parser->canParse()` is added to `RouteResult`.
  */
-function parse_variable<T as nonnull>(
+function parse_variable<T>(
   LecofInterfaces\VariableParser<mixed> $parser,
   LecofInterfaces\Filter<T> $next,
 ): LecofInterfaces\Filter<T> {

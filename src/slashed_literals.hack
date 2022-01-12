@@ -9,7 +9,7 @@ use namespace HTL\Lecof\_Private;
  * `Lecof\merge(Lecof\slashed_literal('a/b', ...), Lecof\literal('c/d', ...))`
  * is equivalent to `Lecof\slashed_literals(dict['a/b' => ..., 'c/d' => ...])`.
  */
-function slashed_literals<T as nonnull>(
+function slashed_literals<T>(
   dict<string, LecofInterfaces\Filter<T>> $children,
 ): LecofInterfaces\Filter<T> {
   return new _Private\SlashedLiteralsFilter($children);

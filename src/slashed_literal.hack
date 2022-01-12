@@ -15,7 +15,7 @@ use namespace HTL\Lecof\_Private;
  * fail to route at `Lecof\literal('c', ...)` and `a/b/c` would fail to route
  * at `Lecof\slashed_literal('a/b', ...)`.
  */
-function slashed_literal<T as nonnull>(
+function slashed_literal<T>(
   string $literal,
   LecofInterfaces\Filter<T> $next,
 ): LecofInterfaces\Filter<T> {

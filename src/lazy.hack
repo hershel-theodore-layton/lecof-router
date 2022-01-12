@@ -42,7 +42,7 @@ use namespace HTL\Lecof\_Private;
  * this primitive, you can have your cake (a good dev experience) and eat it too
  * (good runtime performance).
  */
-function lazy<T as nonnull>(
+function lazy<T>(
   (function(): LecofInterfaces\Filter<T>) $next,
 ): LecofInterfaces\Filter<T> {
   return new _Private\LazyFilter($next);

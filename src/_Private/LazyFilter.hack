@@ -3,7 +3,7 @@ namespace HTL\Lecof\_Private;
 
 use namespace HTL\LecofInterfaces;
 
-final class LazyFilter<T as nonnull> implements LecofInterfaces\Filter<T> {
+final class LazyFilter<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(
     private (function(): LecofInterfaces\Filter<T>) $next,
   ) {}

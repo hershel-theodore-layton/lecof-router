@@ -3,12 +3,11 @@ namespace HTL\Lecof\_Private;
 
 use namespace HTL\LecofInterfaces;
 
-final class NullFilter<T as nonnull> implements LecofInterfaces\Filter<T> {
-
+final class NullFilter implements LecofInterfaces\Filter<nothing> {
   public function filter(
     LecofInterfaces\RequestInfo $_request_info,
     int $_index,
-  ): ?LecofInterfaces\RouteResult<T> {
+  ): null {
     return null;
   }
 }

@@ -10,7 +10,7 @@ use namespace HTL\Lecof\_Private;
  * to `Lecof\literals(dict['a' => ..., 'b' => ...])`.
  * Do not prefix $literal with a slash: use `api`, NOT `/api`.
  */
-function literals<T as nonnull>(
+function literals<T>(
   dict<string, LecofInterfaces\Filter<T>> $children,
 ): LecofInterfaces\Filter<T> {
   return new _Private\LiteralsFilter($children);

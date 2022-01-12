@@ -4,9 +4,7 @@ namespace HTL\Lecof\_Private;
 use namespace HH\Lib\C;
 use namespace HTL\LecofInterfaces;
 
-final class SlashedLiteralsFilter<T as nonnull>
-  implements LecofInterfaces\Filter<T> {
-
+final class SlashedLiteralsFilter<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(
     private dict<string, LecofInterfaces\Filter<T>> $children,
   ) {}

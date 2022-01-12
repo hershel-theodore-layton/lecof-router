@@ -3,8 +3,7 @@ namespace HTL\Lecof\_Private;
 
 use namespace HTL\LecofInterfaces;
 
-final class LiteralFilter<T as nonnull> implements LecofInterfaces\Filter<T> {
-
+final class LiteralFilter<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(
     private string $literal,
     private LecofInterfaces\Filter<T> $next,

@@ -17,7 +17,7 @@ use namespace HTL\Lecof\_Private;
  * );
  * ```
  */
-function merge<T as nonnull>(
+function merge<T>(
   LecofInterfaces\Filter<T> $first,
   LecofInterfaces\Filter<T> ...$rest
 ): LecofInterfaces\Filter<T> {

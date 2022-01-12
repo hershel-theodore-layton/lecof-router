@@ -8,7 +8,7 @@ use namespace HTL\Lecof\_Private;
  * Injects a variable without consuming a path segment
  * and calls `->filter()` on $next.
  */
-function inject_variable<T as nonnull>(
+function inject_variable<T>(
   LecofInterfaces\ParsedVariable<mixed> $variable,
   LecofInterfaces\Filter<T> $next,
 ): LecofInterfaces\Filter<T> {

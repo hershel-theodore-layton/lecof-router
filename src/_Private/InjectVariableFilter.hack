@@ -3,9 +3,7 @@ namespace HTL\Lecof\_Private;
 
 use namespace HTL\LecofInterfaces;
 
-final class InjectVariableFilter<T as nonnull>
-  implements LecofInterfaces\Filter<T> {
-
+final class InjectVariableFilter<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(
     private LecofInterfaces\ParsedVariable<mixed> $variable,
     private LecofInterfaces\Filter<T> $next,

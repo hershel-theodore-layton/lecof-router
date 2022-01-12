@@ -3,9 +3,7 @@ namespace HTL\Lecof\_Private;
 
 use namespace HTL\LecofInterfaces;
 
-final class UnreachableFilter<T as nonnull>
-  implements LecofInterfaces\Filter<T> {
-
+final class UnreachableFilter implements LecofInterfaces\Filter<nothing> {
   public function __construct(
     private string $format,
     private variadic<mixed> $args,
