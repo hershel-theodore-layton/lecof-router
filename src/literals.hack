@@ -12,6 +12,6 @@ use namespace HTL\Lecof\_Private;
  */
 function literals<T>(
   dict<string, LecofInterfaces\Filter<T>> $children,
-): LecofInterfaces\Filter<T> {
+)[]: LecofInterfaces\Filter<T> {
   return new _Private\LiteralsFilter($children);
 }

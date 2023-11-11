@@ -13,19 +13,19 @@ final class RequestInfo implements LecofInterfaces\RequestInfo {
       |> $$ === vec[''] ? vec[] : $$;
   }
 
-  public function getByType<reify T>(): nothing {
+  public function getByType<reify T>()[]: nothing {
     invariant_violation('No extensions available');
   }
 
-  public function getByTypex<reify T>(): nothing {
+  public function getByTypex<reify T>()[]: nothing {
     invariant_violation('No extensions available');
   }
 
-  public function getPathLength(): int {
+  public function getPathLength()[]: int {
     return C\count($this->segments);
   }
 
-  public function getPathSegment(int $index): ?string {
+  public function getPathSegment(int $index)[]: ?string {
     return $this->segments[$index] ?? null;
   }
 
@@ -33,7 +33,7 @@ final class RequestInfo implements LecofInterfaces\RequestInfo {
   public function getPathSegments(
     int $start = 0,
     ?int $length = null,
-  ): vec<string> {
+  )[]: vec<string> {
     if ($length is null || $length >= $this->getPathLength()) {
       return
         $start === 0 ? $this->segments : Vec\slice($this->segments, $start);
@@ -46,18 +46,18 @@ final class RequestInfo implements LecofInterfaces\RequestInfo {
   public function getPathSegmentsAsString(
     int $start = 0,
     ?int $length = null,
-  ): string {
+  )[]: string {
     return Str\join($this->getPathSegments($start, $length), '/');
   }
-  public function getPathSegmentx(int $index): string {
+  public function getPathSegmentx(int $index)[]: string {
     return $this->segments[$index];
   }
 
-  public function hasPathSegment(int $index): bool {
+  public function hasPathSegment(int $index)[]: bool {
     return C\contains_key($this->segments, $index);
   }
 
-  public function pathHasBeenExhausted(int $index): bool {
+  public function pathHasBeenExhausted(int $index)[]: bool {
     return !$this->hasPathSegment($index);
   }
 }

@@ -5,13 +5,13 @@ use namespace HTL\LecofInterfaces;
 
 final class LazyFilter<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(
-    private (function(): LecofInterfaces\Filter<T>) $next,
-  ) {}
+    private (function()[self::CTX]: LecofInterfaces\Filter<T>) $next,
+  )[] {}
 
   public function filter(
     LecofInterfaces\RequestInfo $request_info,
     int $index,
-  ): ?LecofInterfaces\RouteResult<T> {
+  )[self::CTX]: ?LecofInterfaces\RouteResult<T> {
     return ($this->next)()->filter($request_info, $index);
   }
 }

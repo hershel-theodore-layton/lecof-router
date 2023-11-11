@@ -23,7 +23,7 @@ use namespace HTL\Lecof\_Private;
 function unreachable(
   Str\SprintfFormatString $format,
   mixed ...$args
-): LecofInterfaces\Filter<nothing> {
+)[]: LecofInterfaces\Filter<nothing> {
   invariant($format is string, 'Wink wink Hack, format strings are strings');
   return new _Private\UnreachableFilter($format, $args);
 }

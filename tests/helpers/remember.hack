@@ -21,7 +21,7 @@ final class Remember<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(
     private DoYouRemember<T> $memory,
     private LecofInterfaces\Filter<T> $next,
-  ) {}
+  )[] {}
 
   public function filter(
     LecofInterfaces\RequestInfo $request_info,

@@ -43,7 +43,7 @@ use namespace HTL\Lecof\_Private;
  * (good runtime performance).
  */
 function lazy<T>(
-  (function(): LecofInterfaces\Filter<T>) $next,
-): LecofInterfaces\Filter<T> {
+  (function()[LecofInterfaces\Filter::CTX]: LecofInterfaces\Filter<T>) $next,
+)[]: LecofInterfaces\Filter<T> {
   return new _Private\LazyFilter($next);
 }

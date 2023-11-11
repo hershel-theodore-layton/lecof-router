@@ -9,6 +9,6 @@ use namespace HTL\Lecof\_Private;
  */
 function ignore_trailing_path<T>(
   LecofInterfaces\Filter<T> $next,
-): LecofInterfaces\Filter<T> {
+)[]: LecofInterfaces\Filter<T> {
   return new _Private\IgnoreTrailingPathFilter($next);
 }

@@ -18,6 +18,6 @@ use namespace HTL\Lecof\_Private;
 function slashed_literal<T>(
   string $literal,
   LecofInterfaces\Filter<T> $next,
-): LecofInterfaces\Filter<T> {
+)[]: LecofInterfaces\Filter<T> {
   return new _Private\SlashedLiteralFilter($literal, $next);
 }

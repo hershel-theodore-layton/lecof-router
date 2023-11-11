@@ -5,12 +5,13 @@ use namespace HTL\LecofInterfaces;
 
 final class AnythingGoesParser
   implements LecofInterfaces\VariableParser<string> {
-  public function __construct(private string $name) {}
-  public function canParse(string $_raw): bool {
+  public function __construct(private string $name)[] {}
+
+  public function canParse(string $_raw)[]: bool {
     return true;
   }
 
-  public function parse(string $raw): VariableHolder<string> {
+  public function parse(string $raw)[]: VariableHolder<string> {
     return new VariableHolder($this->name, $raw, $raw);
   }
 }

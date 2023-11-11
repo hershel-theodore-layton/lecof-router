@@ -7,12 +7,12 @@ final class InjectVariableFilter<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(
     private LecofInterfaces\ParsedVariable<mixed> $variable,
     private LecofInterfaces\Filter<T> $next,
-  ) {}
+  )[] {}
 
   public function filter(
     LecofInterfaces\RequestInfo $request_info,
     int $index,
-  ): ?LecofInterfaces\RouteResult<T> {
+  )[self::CTX]: ?LecofInterfaces\RouteResult<T> {
     $return = $this->next->filter($request_info, $index + 1);
     if ($return is null) {
       return null;

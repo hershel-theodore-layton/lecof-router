@@ -14,6 +14,6 @@ use namespace HTL\Lecof\_Private;
 function parse_variable<T>(
   LecofInterfaces\VariableParser<mixed> $parser,
   LecofInterfaces\Filter<T> $next,
-): LecofInterfaces\Filter<T> {
+)[]: LecofInterfaces\Filter<T> {
   return new _Private\ParseVariableFilter($parser, $next);
 }

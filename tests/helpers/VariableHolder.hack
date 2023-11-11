@@ -8,17 +8,17 @@ final class VariableHolder<+T> implements LecofInterfaces\ParsedVariable<T> {
     private string $name,
     private string $rawValue,
     private T $parsedValue,
-  ) {}
+  )[] {}
 
-  public function getName(): string {
+  public function getName()[]: string {
     return $this->name;
   }
 
-  public function getRawValue(): string {
+  public function getRawValue()[]: string {
     return $this->rawValue;
   }
 
-  public function getValue(): T {
+  public function getValue()[]: T {
     return $this->parsedValue;
   }
 }

@@ -11,6 +11,6 @@ use namespace HTL\Lecof\_Private;
 function inject_variable<T>(
   LecofInterfaces\ParsedVariable<mixed> $variable,
   LecofInterfaces\Filter<T> $next,
-): LecofInterfaces\Filter<T> {
+)[]: LecofInterfaces\Filter<T> {
   return new _Private\InjectVariableFilter($variable, $next);
 }

@@ -4,12 +4,12 @@ namespace HTL\Lecof\_Private;
 use namespace HTL\LecofInterfaces;
 
 final class DoneFilter<+T> implements LecofInterfaces\Filter<T> {
-  public function __construct(private T $done) {}
+  public function __construct(private T $done)[] {}
 
   public function filter(
     LecofInterfaces\RequestInfo $request_info,
     int $index,
-  ): ?LecofInterfaces\RouteResult<T> {
+  )[self::CTX]: ?LecofInterfaces\RouteResult<T> {
     if (!$request_info->pathHasBeenExhausted($index)) {
       return null;
     }

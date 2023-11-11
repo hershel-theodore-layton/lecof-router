@@ -7,12 +7,12 @@ final class UnreachableFilter implements LecofInterfaces\Filter<nothing> {
   public function __construct(
     private string $format,
     private variadic<mixed> $args,
-  ) {}
+  )[] {}
 
   public function filter(
     LecofInterfaces\RequestInfo $_request_info,
     int $_index,
-  ): nothing {
+  )[self::CTX]: nothing {
     throw new InvariantException(\vsprintf($this->format, $this->args));
   }
 }

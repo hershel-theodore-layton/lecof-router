@@ -11,6 +11,6 @@ use namespace HTL\Lecof\_Private;
 function literal<T>(
   string $literal,
   LecofInterfaces\Filter<T> $next,
-): LecofInterfaces\Filter<T> {
+)[]: LecofInterfaces\Filter<T> {
   return new _Private\LiteralFilter($literal, $next);
 }

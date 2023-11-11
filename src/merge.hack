@@ -20,6 +20,6 @@ use namespace HTL\Lecof\_Private;
 function merge<T>(
   LecofInterfaces\Filter<T> $first,
   LecofInterfaces\Filter<T> ...$rest
-): LecofInterfaces\Filter<T> {
+)[]: LecofInterfaces\Filter<T> {
   return C\is_empty($rest) ? $first : new _Private\MergedFilter($first, $rest);
 }

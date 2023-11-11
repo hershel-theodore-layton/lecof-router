@@ -62,7 +62,7 @@ function literal_with_optional_extension<T as nonnull>(
   string $literal,
   string $extension,
   LecofInterfaces\Filter<T> $next,
-): LecofInterfaces\Filter<T> {
+)[]: LecofInterfaces\Filter<T> {
   return new LiteralWithOptionalExtension($literal, $extension, $next);
 }
 
@@ -73,12 +73,12 @@ final class LiteralWithOptionalExtension<T as nonnull>
     private string $literal,
     private string $extension,
     private LecofInterfaces\Filter<T> $next,
-  ) {}
+  )[] {}
 
   public function filter(
     LecofInterfaces\RequestInfo $request_info,
     int $index,
-  ): ?LecofInterfaces\RouteResult<T> {
+  )[]: ?LecofInterfaces\RouteResult<T> {
     $segment = $request_info->getPathSegment($index);
     if (
       $segment !== $this->literal &&
@@ -130,7 +130,7 @@ async function my_web_entry_point_async(): Awaitable<void> {
 
 // Some other file
 
-function api_routes(): MyFilterType {
+function api_routes()[]: MyFilterType {
   return Lecof\literals(dict[
     'user' => Lecof\merge(
       Lecof\literal('me', Lecof\done(api_response_current_user_async<>)),
@@ -153,7 +153,7 @@ function api_routes(): MyFilterType {
   ]);
 }
 
-function web_routes(): MyFilterType {
+function web_routes()[]: MyFilterType {
   return Lecof\merge(
     Lecof\slashed_literals(dict[
       'about' => Lecof\done(web_about_async<>),
@@ -166,11 +166,11 @@ function web_routes(): MyFilterType {
 // Another file
 
 final class IntegerParser implements LecofInterfaces\VariableParser<int> {
-  public function __construct(private string $name) {}
-  public function canParse(string $raw): bool {
+  public function __construct(private string $name)[] {}
+  public function canParse(string $raw)[]: bool {
     return Str\to_int($raw) is nonnull;
   }
-  public function parse(string $raw): LecofInterfaces\ParsedVariable<int> {
+  public function parse(string $raw)[]: LecofInterfaces\ParsedVariable<int> {
     return new GenericParsedVariable<int>(
       $this->name,
       $raw,
@@ -185,14 +185,14 @@ final class GenericParsedVariable<reify T>
     private string $name,
     private string $raw,
     private T $value,
-  ) {}
-  public function getName(): string {
+  )[] {}
+  public function getName()[]: string {
     return $this->name;
   }
-  public function getRawValue(): string {
+  public function getRawValue()[]: string {
     return $this->raw;
   }
-  public function getValue(): T {
+  public function getValue()[]: T {
     return $this->value;
   }
 }

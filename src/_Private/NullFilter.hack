@@ -7,7 +7,7 @@ final class NullFilter implements LecofInterfaces\Filter<nothing> {
   public function filter(
     LecofInterfaces\RequestInfo $_request_info,
     int $_index,
-  ): null {
+  )[self::CTX]: null {
     return null;
   }
 }
