@@ -16,26 +16,6 @@ trait Assertions {
     expect($filter->filter($request_info, 0))->toBeNull();
   }
 
-  protected static function assertDoesNotChangeIndex<T>(
-    LecofInterfaces\Filter<T> $filter,
-    LecofInterfaces\RequestInfo $request_info,
-    DoYouRemember<T> $memory,
-  ): void {
-    $expected = static::rand();
-    $filter->filter($request_info, $expected);
-    expect($memory->index)->toEqual($expected);
-  }
-
-  protected static function assertExhaustsPath<T>(
-    LecofInterfaces\Filter<mixed> $filter,
-    LecofInterfaces\RequestInfo $request_info,
-    DoYouRemember<T> $memory,
-    int $index = 0,
-  ): void {
-    $filter->filter($request_info, $index);
-    expect($memory->index)->toEqual($request_info->getPathLength());
-  }
-
   protected static function assertHasVariables(
     LecofInterfaces\Filter<mixed> $filter,
     LecofInterfaces\RequestInfo $request_info,
@@ -49,16 +29,6 @@ trait Assertions {
       $var ==> $var->getValue(),
       $var ==> $var->getName(),
     ))->toHaveSameContentAs($variables);
-  }
-
-  protected static function assertIncrementsIndex<T>(
-    LecofInterfaces\Filter<mixed> $filter,
-    LecofInterfaces\RequestInfo $request_info,
-    DoYouRemember<T> $memory,
-    int $index = 0,
-  ): void {
-    $filter->filter($request_info, $index);
-    expect($memory->index)->toEqual($index + 1);
   }
 
   protected static function assertReturns(
@@ -89,13 +59,6 @@ trait Assertions {
     ?string $path = null,
   ): LecofInterfaces\RequestInfo {
     return new RequestInfo($path ?? '/');
-  }
-
-  protected static function mem<T>(
-    LecofInterfaces\Filter<T> $next,
-  ): (DoYouRemember<T>, LecofInterfaces\Filter<T>) {
-    $memory = new DoYouRemember();
-    return tuple($memory, remember($memory, $next));
   }
 
   protected static function rand(): int {

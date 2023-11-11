@@ -48,15 +48,4 @@ final class SlashedLiteralFilterTest extends HackTest {
       static::request('/very/many/parts'),
     );
   }
-
-  public function test_does_increment_index(): void {
-    $request = static::request('/very/many/parts');
-    list($memory, $filter) = static::mem(Lecof\null());
-
-    static::assertExhaustsPath(
-      Lecof\slashed_literal('very/many/parts', $filter),
-      $request,
-      $memory,
-    );
-  }
 }

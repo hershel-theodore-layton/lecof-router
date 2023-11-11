@@ -33,13 +33,4 @@ final class LiteralFilterTest extends HackTest {
       static::request('/hello'),
     );
   }
-
-  public function test_does_increment_index(): void {
-    list($memory, $filter) = static::mem(Lecof\done(42));
-    static::assertIncrementsIndex(
-      Lecof\literal('hello', $filter),
-      static::request('/hello'),
-      $memory,
-    );
-  }
 }

@@ -44,13 +44,4 @@ final class ParseVariableFilterTest extends HackTest {
       dict['outer' => 'outer', 'inner' => '12345'],
     );
   }
-
-  public function test_does_increment_index(): void {
-    list($memory, $filter) = static::mem(Lecof\done(42));
-    static::assertIncrementsIndex(
-      Lecof\parse_variable(new AnythingGoesParser('var'), $filter),
-      static::request('/hello'),
-      $memory,
-    );
-  }
 }

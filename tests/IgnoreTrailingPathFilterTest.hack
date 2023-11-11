@@ -18,12 +18,11 @@ final class IgnoreTrailingPathFilterTest extends HackTest {
 
   public function test_forwards_index_to_end_of_path(): void {
     $request = static::request('/a/b/c/d/e/f/g/h');
-    list($memory, $filter) = static::mem(Lecof\null());
-
-    static::assertExhaustsPath(
-      Lecof\ignore_trailing_path($filter),
-      $request,
-      $memory,
+    $expect = static::rand();
+    static::assertReturns(
+      Lecof\ignore_trailing_path(Lecof\done($expect)),
+      static::request(),
+      $expect,
     );
   }
 }

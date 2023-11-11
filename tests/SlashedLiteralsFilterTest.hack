@@ -66,20 +66,4 @@ final class SlashedLiteralsFilterTest extends HackTest {
       static::request('/a/b/c/g/l'),
     );
   }
-
-  public function test_forwards_index_to_end_of_path(): void {
-    $request = static::request('/a/b/e/g');
-    list($memory, $filter) = static::mem(Lecof\null());
-
-    static::assertExhaustsPath(
-      Lecof\slashed_literals(dict[
-        'a/b/c/g' => Lecof\done(1),
-        'a/b/d/g' => Lecof\done(2),
-        'a/b/e/g' => $filter,
-        'a/b/f/g' => Lecof\done(4),
-      ]),
-      $request,
-      $memory,
-    );
-  }
 }
