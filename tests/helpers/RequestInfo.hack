@@ -7,7 +7,7 @@ use namespace HTL\LecofInterfaces;
 final class RequestInfo implements LecofInterfaces\RequestInfo {
   private vec<string> $segments;
 
-  public function __construct(string $path) {
+  public function __construct(string $path)[] {
     $this->segments = Str\strip_prefix($path, '/')
       |> Str\split($$, '/')
       |> $$ === vec[''] ? vec[] : $$;
