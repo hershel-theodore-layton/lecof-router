@@ -13,6 +13,6 @@ final class StringReverseParser
   }
 
   public function parse(string $raw)[]: VariableHolder<string> {
-    return new VariableHolder($this->name, $raw, Str\reverse($raw));
+    return new VariableHolder($this->name, $raw, \strrev($raw));
   }
 }
