@@ -8,7 +8,7 @@ if [ "$HHVM_VERSION_MAJOR" -ne "4" ]; then exit; fi
 
 # Some .hhconfig settings only work on hhvm version 4.128 and above.
 # This script will scan the hhconfig file for directives that look like this:
-# require:4.128
+# requires:4.128
 # Where 128 can be any hhvm minor version.
 # If the current hhvm version is less than the required version,
 # the hhconfig file stops at this directive, ignoring all settings below.
