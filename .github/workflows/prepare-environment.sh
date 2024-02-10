@@ -6,16 +6,24 @@ rm vendor/autoload.php vendor/composer/*.php
 HHVM_VERSION_MAJOR=`hhvm --php -r "echo HHVM_VERSION_MAJOR;"`
 if [ "$HHVM_VERSION_MAJOR" -ne "4" ]; then exit; fi
 
-# Deletes any line from .hhconfig that contains `requires:<hhvm_version>`
-# if <hhvm_version> is greater than the current hhvm version.
-# Does not support anything outside of the hhvm 4.x range.
+# Some .hhconfig settings only work on hhvm version 4.128 and above.
+# This script will scan the hhconfig file for directives that look like this:
+# require:4.128
+# Where 128 can be any hhvm minor version.
+# If the current hhvm version is less than the required version,
+# the hhconfig file stops at this directive, ignoring all settings below.
 
 HHVM_VERSION_MINOR=`hhvm --php -r "echo HHVM_VERSION_MINOR;"`
 NEXT=$(($HHVM_VERSION_MINOR + 1))
 
 # On hhvm 4.102, this would create the pattern:
-# "requires:4.103|requires:4.104|...|requires:4.172"
+# "requires:4.103|requires:4.104|...|requires:4.128|...|requires:4.172"
+# Since `requires:4.128` is part of the regex, the hhconfig file stops there.
+# On hhvm 4.128, the expression would be "requires:4.129|...|requires:4.172".
+# Since `requires:4.129` is not part of the regex, the requires directive is ignored.
+
 FUTURE_VERSIONS=`for i in $(seq $NEXT 172); do echo "requires:4.$i"; done`
 FUTURE_VERSIONS=`echo $FUTURE_VERSIONS | sed "s/ /|/g"`
 
-sed -i -E /$FUTURE_VERSIONS/d .hhconfig
+# Edit the file in place, sorry Mac users, your sed requires a `-i ''` here.
+sed -i -E "/$FUTURE_VERSIONS/q0" .hhconfig
