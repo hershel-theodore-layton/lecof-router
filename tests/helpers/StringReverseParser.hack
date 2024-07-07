@@ -1,7 +1,6 @@
 /** lecof-router is MIT licensed, see /LICENSE. */
 namespace HTL\Lecof\Tests;
 
-use namespace HH\Lib\Str;
 use namespace HTL\LecofInterfaces;
 
 final class StringReverseParser

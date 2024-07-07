@@ -13,6 +13,9 @@ namespace HTL\Lecof\Tests;
 
 use namespace HH\Lib\{C, Str, Vec};
 use namespace HTL\LecofInterfaces;
+use type HTL\Pragma\Pragmas;
+
+<<file: Pragmas(vec['PhaLinters', 'fixme:license_header'])>>
 
 final class RequestInfo implements LecofInterfaces\RequestInfo {
   private vec<string> $segments;
