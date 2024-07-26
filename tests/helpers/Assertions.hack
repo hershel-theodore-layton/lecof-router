@@ -61,7 +61,7 @@ trait Assertions {
     return new RequestInfo($path ?? '/');
   }
 
-  protected static function rand()[zoned]: int {
+  protected static function rand()[defaults]: int {
     return PseudoRandom\int();
   }
 }
