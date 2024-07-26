@@ -7,7 +7,7 @@ use type Facebook\HackTest\HackTest;
 final class InjectVariableFilterTest extends HackTest {
   use Assertions;
 
-  public function test_returns_the_value_of_the_inner_filter(): void {
+  public function test_returns_the_value_of_the_inner_filter()[defaults]: void {
     $expected = static::rand();
     static::assertReturns(
       Lecof\inject_variable(
@@ -19,7 +19,7 @@ final class InjectVariableFilterTest extends HackTest {
     );
   }
 
-  public function test_bails_if_inner_bails(): void {
+  public function test_bails_if_inner_bails()[defaults]: void {
     static::assertBails(
       Lecof\inject_variable(
         new VariableHolder('var', 'meh', '_'),
@@ -29,7 +29,7 @@ final class InjectVariableFilterTest extends HackTest {
     );
   }
 
-  public function test_bails_when_the_parser_can_not_parse(): void {
+  public function test_bails_when_the_parser_can_not_parse()[defaults]: void {
     static::assertHasVariables(
       Lecof\inject_variable(
         new VariableHolder('var', 'hi', 'hello'),
@@ -40,7 +40,8 @@ final class InjectVariableFilterTest extends HackTest {
     );
   }
 
-  public function test_variables_from_a_nested_filter_are_retained(): void {
+  public function test_variables_from_a_nested_filter_are_retained(
+  )[defaults]: void {
     static::assertHasVariables(
       Lecof\inject_variable(
         new VariableHolder('outer', 'letters', 'abc'),

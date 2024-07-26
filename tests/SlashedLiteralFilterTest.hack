@@ -7,7 +7,7 @@ use type Facebook\HackTest\HackTest;
 final class SlashedLiteralFilterTest extends HackTest {
   use Assertions;
 
-  public function test_forwards_when_literal_is_same(): void {
+  public function test_forwards_when_literal_is_same()[defaults]: void {
     $expected = static::rand();
     static::assertReturns(
       Lecof\slashed_literal('hello', Lecof\done($expected)),
@@ -16,7 +16,7 @@ final class SlashedLiteralFilterTest extends HackTest {
     );
   }
 
-  public function test_bails_when_literal_is_different(): void {
+  public function test_bails_when_literal_is_different()[defaults]: void {
     $expected = static::rand();
     static::assertBails(
       Lecof\slashed_literal('hi', Lecof\done($expected)),
@@ -24,7 +24,7 @@ final class SlashedLiteralFilterTest extends HackTest {
     );
   }
 
-  public function test_forwards_when_rest_matches(): void {
+  public function test_forwards_when_rest_matches()[defaults]: void {
     $expected = static::rand();
     static::assertReturns(
       Lecof\slashed_literal('very/many/parts', Lecof\done($expected)),
@@ -33,7 +33,8 @@ final class SlashedLiteralFilterTest extends HackTest {
     );
   }
 
-  public function test_bails_when_one_part_of_rest_is_different(): void {
+  public function test_bails_when_one_part_of_rest_is_different(
+  )[defaults]: void {
     $expected = static::rand();
     static::assertBails(
       Lecof\slashed_literal('very/many/parts', Lecof\done($expected)),
@@ -41,7 +42,7 @@ final class SlashedLiteralFilterTest extends HackTest {
     );
   }
 
-  public function test_bails_on_a_partial_match(): void {
+  public function test_bails_on_a_partial_match()[defaults]: void {
     $expected = static::rand();
     static::assertBails(
       Lecof\slashed_literal('very/many', Lecof\done($expected)),

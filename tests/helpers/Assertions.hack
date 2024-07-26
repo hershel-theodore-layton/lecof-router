@@ -12,7 +12,7 @@ trait Assertions {
   protected static function assertBails(
     LecofInterfaces\Filter<mixed> $filter,
     LecofInterfaces\RequestInfo $request_info,
-  ): void {
+  )[defaults]: void {
     expect($filter->filter($request_info, 0))->toBeNull();
   }
 
@@ -20,7 +20,7 @@ trait Assertions {
     LecofInterfaces\Filter<mixed> $filter,
     LecofInterfaces\RequestInfo $request_info,
     dict<string, mixed> $variables,
-  ): void {
+  )[defaults]: void {
     $result = $filter->filter($request_info, 0);
     $result =
       expect($result)->toNotBeNull('No variables, since routing returned null');
@@ -35,7 +35,7 @@ trait Assertions {
     LecofInterfaces\Filter<mixed> $filter,
     LecofInterfaces\RequestInfo $request_info,
     mixed $expected,
-  ): void {
+  )[defaults]: void {
     $result = $filter->filter($request_info, 0);
     list($return, $_) = expect($result)->toNotBeNull('Routing returned null');
     expect($return)->toEqual($expected);
@@ -46,7 +46,7 @@ trait Assertions {
     LecofInterfaces\RequestInfo $request_info,
     classname<\Throwable> $exception_class,
     string $message,
-  ): void {
+  )[defaults]: void {
     try {
       $filter->filter($request_info, 0);
     } catch (\Throwable $t) {
@@ -57,11 +57,11 @@ trait Assertions {
 
   protected static function request(
     ?string $path = null,
-  ): LecofInterfaces\RequestInfo {
+  )[]: LecofInterfaces\RequestInfo {
     return new RequestInfo($path ?? '/');
   }
 
-  protected static function rand(): int {
+  protected static function rand()[zoned]: int {
     return PseudoRandom\int();
   }
 }

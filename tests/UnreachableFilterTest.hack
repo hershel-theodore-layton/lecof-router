@@ -8,7 +8,7 @@ final class UnreachableFilterTest extends HackTest {
   use Assertions;
 
   public function test_throws_an_invariant_exception_with_custom_message(
-  ): void {
+  )[defaults]: void {
     static::assertThrowsExactType(
       Lecof\unreachable('%s should not %s', 'This', 'happen'),
       static::request(),

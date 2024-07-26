@@ -7,7 +7,8 @@ use type Facebook\HackTest\HackTest;
 final class LiteralsFilterTest extends HackTest {
   use Assertions;
 
-  public function test_forwards_the_request_to_the_matching_literal(): void {
+  public function test_forwards_the_request_to_the_matching_literal(
+  )[defaults]: void {
     $expected = static::rand();
     static::assertReturns(
       Lecof\literals(dict[
@@ -21,7 +22,7 @@ final class LiteralsFilterTest extends HackTest {
     );
   }
 
-  public function test_bails_when_none_of_the_literals_match(): void {
+  public function test_bails_when_none_of_the_literals_match()[defaults]: void {
     static::assertBails(
       Lecof\literals(dict[
         'one' => Lecof\done(1),
@@ -33,7 +34,7 @@ final class LiteralsFilterTest extends HackTest {
     );
   }
 
-  public function test_bails_when_dict_is_empty(): void {
+  public function test_bails_when_dict_is_empty()[defaults]: void {
     static::assertBails(Lecof\literals(dict[]), static::request('/five'));
   }
 }

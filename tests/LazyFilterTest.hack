@@ -7,7 +7,8 @@ use type Facebook\HackTest\HackTest;
 final class LazyFilterTest extends HackTest {
   use Assertions;
 
-  public function test_returns_from_the_unwrapped_next_filter(): void {
+  public function test_returns_from_the_unwrapped_next_filter(
+  )[defaults]: void {
     $expect = static::rand();
     static::assertReturns(
       Lecof\lazy(()[] ==> Lecof\done($expect)),
@@ -16,7 +17,7 @@ final class LazyFilterTest extends HackTest {
     );
   }
 
-  public function test_does_not_invoke_function_greedily(): void {
+  public function test_does_not_invoke_function_greedily()[defaults]: void {
     Lecof\lazy(()[] ==> {
       invariant_violation('I am not invoked if not needed');
     });

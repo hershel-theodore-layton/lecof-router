@@ -7,7 +7,7 @@ use type Facebook\HackTest\HackTest;
 final class NullFilterTest extends HackTest {
   use Assertions;
 
-  public function test_always_bails(): void {
+  public function test_always_bails()[defaults]: void {
     static::assertBails(Lecof\null(), static::request());
   }
 }

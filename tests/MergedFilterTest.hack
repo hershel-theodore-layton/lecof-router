@@ -15,13 +15,14 @@ final class MergedFilterTest extends HackTest {
    * WHEN ONE ARGUMENT IS SUPPLIED, YOUR CODE IS BROKEN!
    */
   public function test_merge_returns_the_first_if_no_second_argument_is_given(
-  ): void {
+  )[defaults]: void {
     $inner = Lecof\done(42);
     // IMPLEMENTATION DETAIL!!!
     expect(Lecof\merge($inner))->toEqual($inner);
   }
 
-  public function test_merge_returns_the_first_successful_match(): void {
+  public function test_merge_returns_the_first_successful_match(
+  )[defaults]: void {
     $expected = static::rand();
     static::assertReturns(
       Lecof\merge(Lecof\done($expected), Lecof\null()),
@@ -30,7 +31,7 @@ final class MergedFilterTest extends HackTest {
     );
   }
 
-  public function test_merge_bails_if_no_children_match(): void {
+  public function test_merge_bails_if_no_children_match()[defaults]: void {
     static::assertBails(
       Lecof\merge(Lecof\null(), Lecof\null()),
       static::request(),
@@ -38,7 +39,7 @@ final class MergedFilterTest extends HackTest {
   }
 
   public function test_merge_returns_the_first_successful_match_and_ignores_further_filters(
-  ): void {
+  )[defaults]: void {
     $expected = static::rand();
     static::assertReturns(
       Lecof\merge(
@@ -52,7 +53,8 @@ final class MergedFilterTest extends HackTest {
     );
   }
 
-  public function test_merge_short_circuits_when_one_match_is_found(): void {
+  public function test_merge_short_circuits_when_one_match_is_found(
+  )[defaults]: void {
     $expected = static::rand();
     static::assertReturns(
       Lecof\merge(
