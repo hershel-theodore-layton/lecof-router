@@ -3,7 +3,7 @@ namespace HTL\Lecof\Tests;
 
 use namespace HTL\Lecof;
 use type Facebook\HackTest\HackTest;
-use function Facebook\FBExpect\expect;
+use function HTL\Expect\expect;
 
 final class MergedFilterTest extends HackTest {
   use Assertions;

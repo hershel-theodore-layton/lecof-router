@@ -4,7 +4,7 @@ namespace HTL\Lecof\Tests;
 use namespace HH\Lib\{Dict, PseudoRandom};
 use namespace HTL\LecofInterfaces;
 use type Facebook\HackTest\HackTest;
-use function Facebook\FBExpect\expect;
+use function HTL\Expect\expect;
 
 trait Assertions {
   require extends HackTest;
@@ -22,10 +22,9 @@ trait Assertions {
     dict<string, mixed> $variables,
   )[defaults]: void {
     $result = $filter->filter($request_info, 0);
-    $result =
-      expect($result)->toNotBeNull('No variables, since routing returned null');
+    expect($result)->toBeNonnull();
     expect(Dict\pull(
-      $result[1],
+      $result as nonnull[1],
       $var ==> $var->getValue(),
       $var ==> $var->getName(),
     ))->toHaveSameContentAs($variables);
@@ -37,8 +36,8 @@ trait Assertions {
     mixed $expected,
   )[defaults]: void {
     $result = $filter->filter($request_info, 0);
-    list($return, $_) = expect($result)->toNotBeNull('Routing returned null');
-    expect($return)->toEqual($expected);
+    expect($result)->toBeNonnull();
+    expect($result as nonnull[0])->toEqual($expected);
   }
 
   protected static function assertThrowsExactType(
