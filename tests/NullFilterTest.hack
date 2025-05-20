@@ -1,13 +1,14 @@
 /** lecof-router is MIT licensed, see /LICENSE. */
 namespace HTL\Lecof\Tests;
 
-use namespace HTL\Lecof;
-use type Facebook\HackTest\HackTest;
+use namespace HTL\{Lecof, TestChain};
 
-final class NullFilterTest extends HackTest {
-  use Assertions;
+<<TestChain\Discover>>
+function null_filter_test(TestChain\Chain $chain)[]: TestChain\Chain {
+  $assert = new Assertions();
 
-  public function test_always_bails()[defaults]: void {
-    static::assertBails(Lecof\null(), static::request());
-  }
+  return $chain->group(__FUNCTION__)
+    ->test('test_always_bails', () ==> {
+      $assert->assertBails(Lecof\null(), $assert->request());
+    });
 }

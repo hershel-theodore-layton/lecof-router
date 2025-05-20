@@ -1,19 +1,18 @@
 /** lecof-router is MIT licensed, see /LICENSE. */
 namespace HTL\Lecof\Tests;
 
-use namespace HTL\Lecof;
-use type Facebook\HackTest\HackTest;
+use namespace HTL\{Lecof, TestChain};
 
-final class UnreachableFilterTest extends HackTest {
-  use Assertions;
+<<TestChain\Discover>>
+function unreachable_filter_test(TestChain\Chain $chain)[]: TestChain\Chain {
+  $assert = new Assertions();
 
-  public function test_throws_an_invariant_exception_with_custom_message(
-  )[defaults]: void {
-    static::assertThrowsExactType(
-      Lecof\unreachable('%s should not %s', 'This', 'happen'),
-      static::request(),
-      InvariantException::class,
-      'This should not happen',
-    );
-  }
+  return $chain->group(__FUNCTION__)
+    ->test('test_throws_an_invariant_exception_with_custom_message', () ==> {
+      $assert->assertThrowsExactType<InvariantException>(
+        Lecof\unreachable('%s should not %s', 'This', 'happen'),
+        $assert->request(),
+        'This should not happen',
+      );
+    });
 }

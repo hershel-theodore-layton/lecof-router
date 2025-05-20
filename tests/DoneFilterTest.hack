@@ -1,20 +1,25 @@
 /** lecof-router is MIT licensed, see /LICENSE. */
 namespace HTL\Lecof\Tests;
 
-use namespace HTL\Lecof;
-use type Facebook\HackTest\HackTest;
+use namespace HTL\{Lecof, TestChain};
 
-final class DoneFilterTest extends HackTest {
-  use Assertions;
+<<TestChain\Discover>>
+function done_filter_test(TestChain\Chain $chain)[]: TestChain\Chain {
+  $assert = new Assertions();
 
-  public function test_returns_what_it_has_been_given_if_path_has_been_exhausted(
-  )[defaults]: void {
-    $expect = static::rand();
-    static::assertReturns(Lecof\done($expect), static::request(), $expect);
-  }
-
-  public function test_returns_null_if_path_has_not_been_exhausted(
-  )[defaults]: void {
-    static::assertBails(Lecof\done(5), static::request('/hi'));
-  }
+  return $chain->group(__FUNCTION__)
+    ->test(
+      'test_returns_what_it_has_been_given_if_path_has_been_exhausted',
+      ()[defaults] ==> {
+        $expect = $assert->rand();
+        $assert->assertReturns(
+          Lecof\done($expect),
+          $assert->request(),
+          $expect,
+        );
+      },
+    )
+    ->test('test_returns_null_if_path_has_not_been_exhausted', () ==> {
+      $assert->assertBails(Lecof\done(5), $assert->request('/hi'));
+    });
 }

@@ -3,24 +3,22 @@ namespace HTL\Lecof\Tests;
 
 use namespace HH\Lib\{Dict, PseudoRandom};
 use namespace HTL\LecofInterfaces;
-use type Facebook\HackTest\HackTest;
-use function HTL\Expect\expect;
+use function HTL\Expect\{expect, expect_invoked};
+use type Throwable;
 
-trait Assertions {
-  require extends HackTest;
-
-  protected static function assertBails(
+final class Assertions {
+  public function assertBails(
     LecofInterfaces\Filter<mixed> $filter,
     LecofInterfaces\RequestInfo $request_info,
-  )[defaults]: void {
+  )[]: void {
     expect($filter->filter($request_info, 0))->toBeNull();
   }
 
-  protected static function assertHasVariables(
+  public function assertHasVariables(
     LecofInterfaces\Filter<mixed> $filter,
     LecofInterfaces\RequestInfo $request_info,
     dict<string, mixed> $variables,
-  )[defaults]: void {
+  )[]: void {
     $result = $filter->filter($request_info, 0);
     expect($result)->toBeNonnull();
     expect(Dict\pull(
@@ -30,37 +28,31 @@ trait Assertions {
     ))->toHaveSameContentAs($variables);
   }
 
-  protected static function assertReturns(
+  public function assertReturns(
     LecofInterfaces\Filter<mixed> $filter,
     LecofInterfaces\RequestInfo $request_info,
     mixed $expected,
-  )[defaults]: void {
+  )[]: void {
     $result = $filter->filter($request_info, 0);
     expect($result)->toBeNonnull();
     expect($result as nonnull[0])->toEqual($expected);
   }
 
-  protected static function assertThrowsExactType(
+  public function assertThrowsExactType<<<__Enforceable>> reify T as Throwable>(
     LecofInterfaces\Filter<nonnull> $filter,
     LecofInterfaces\RequestInfo $request_info,
-    classname<\Throwable> $exception_class,
     string $message,
-  )[defaults]: void {
-    try {
-      $filter->filter($request_info, 0);
-    } catch (\Throwable $t) {
-      expect(\get_class($t))->toEqual($exception_class);
-      expect($t->getMessage())->toContainSubstring($message);
-    }
+  )[]: void {
+    expect_invoked(() ==> $filter->filter($request_info, 0))->toHaveThrown<T>(
+      $message,
+    );
   }
 
-  protected static function request(
-    ?string $path = null,
-  )[]: LecofInterfaces\RequestInfo {
+  public function request(?string $path = null)[]: LecofInterfaces\RequestInfo {
     return new RequestInfo($path ?? '/');
   }
 
-  protected static function rand()[defaults]: int {
+  public function rand()[defaults]: int {
     return PseudoRandom\int();
   }
 }

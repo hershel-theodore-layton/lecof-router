@@ -1,0 +1,7 @@
+{
+    "chain_path": "test-chain/chain.hack",
+    "codegen_namespace": "HTL\\Project_4PwQUZ8GatbO\\GeneratedTestChain",
+    "license_comment": "/** lecof-router is MIT licensed, see /LICENSE. */",
+    "run_file": "run.hack",
+    "test_dir": "tests"
+}

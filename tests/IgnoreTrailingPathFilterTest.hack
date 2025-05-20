@@ -1,27 +1,29 @@
 /** lecof-router is MIT licensed, see /LICENSE. */
 namespace HTL\Lecof\Tests;
 
-use namespace HTL\Lecof;
-use type Facebook\HackTest\HackTest;
+use namespace HTL\{Lecof, TestChain};
 
-final class IgnoreTrailingPathFilterTest extends HackTest {
-  use Assertions;
+<<TestChain\Discover>>
+function ignore_trailing_path_filter_test(
+  TestChain\Chain $chain,
+)[]: TestChain\Chain {
+  $assert = new Assertions();
 
-  public function test_returns_from_next()[defaults]: void {
-    $expect = static::rand();
-    static::assertReturns(
-      Lecof\ignore_trailing_path(Lecof\done($expect)),
-      static::request(),
-      $expect,
-    );
-  }
-
-  public function test_forwards_index_to_end_of_path()[defaults]: void {
-    $expect = static::rand();
-    static::assertReturns(
-      Lecof\ignore_trailing_path(Lecof\done($expect)),
-      static::request('/a/b/c/d/e/f/g/h'),
-      $expect,
-    );
-  }
+  return $chain->group(__FUNCTION__)
+    ->test('test_returns_from_next', ()[defaults] ==> {
+      $expect = $assert->rand();
+      $assert->assertReturns(
+        Lecof\ignore_trailing_path(Lecof\done($expect)),
+        $assert->request(),
+        $expect,
+      );
+    })
+    ->test('test_forwards_index_to_end_of_path', ()[defaults] ==> {
+      $expect = $assert->rand();
+      $assert->assertReturns(
+        Lecof\ignore_trailing_path(Lecof\done($expect)),
+        $assert->request('/a/b/c/d/e/f/g/h'),
+        $expect,
+      );
+    });
 }
