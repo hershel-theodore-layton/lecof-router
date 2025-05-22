@@ -3,9 +3,9 @@ namespace HTL\Project_4PwQUZ8GatbO\GeneratedTestChain;
 
 use namespace HTL\TestChain;
 
-async function tests_async<T as TestChain\Chain>(
-  TestChain\ChainController<T> $controller
-)[defaults]: Awaitable<TestChain\ChainController<T>> {
+async function tests_async(
+  TestChain\ChainController<\HTL\TestChain\Chain> $controller
+)[defaults]: Awaitable<TestChain\ChainController<\HTL\TestChain\Chain>> {
   return $controller
     ->addTestGroup(\HTL\Lecof\Tests\done_filter_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\ignore_trailing_path_filter_test<>)
