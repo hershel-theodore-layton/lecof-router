@@ -3,7 +3,7 @@
   "description": "A request router for Hack and HHVM without a build step.",
   "license": "MIT",
   "require": {
-    "hhvm": "^4.102",
+    "hhvm": ">=4.102",
     "hershel-theodore-layton/lecof-router-interfaces": "^1.0-RC1",
     "hershel-theodore-layton/pragma": "<1"
   },
