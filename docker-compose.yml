@@ -9,5 +9,4 @@ services:
         source: .
         target: /mnt/project
     ports:
-      - 8085:80
       - 48544:10641
