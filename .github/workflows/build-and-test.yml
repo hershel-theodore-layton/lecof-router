@@ -34,7 +34,7 @@ jobs:
       - uses: hershel-theodore-layton/actions/hack-lint-test@master
         with:
           hhvm: ${{matrix.hhvm}}
-          hhvm_flags: ${{ startsWith(matrix.hhvm, '4') && format('-dhhvm.autoload.enabled=true -dhhvm.autoload.db.path=.var/facts-%{euid}-%{schema}.db') || format('') }}
+          hhvm_flags: ${{ startsWith(matrix.hhvm, '4') && format('-dhhvm.autoload.enabled=true -dhhvm.autoload.db.path=.var/facts.db') || format('') }}
           skip_lint: ${{matrix.hhvm == '4.102'}}
           lint_engine: pha
           test_engine: test-chain
