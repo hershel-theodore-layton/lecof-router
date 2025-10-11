@@ -6,7 +6,7 @@ use namespace HTL\LecofInterfaces;
 final class MergedFilter<+T> implements LecofInterfaces\Filter<T> {
   public function __construct(
     private LecofInterfaces\Filter<T> $first,
-    private variadic<LecofInterfaces\Filter<T>> $rest,
+    private vec<LecofInterfaces\Filter<T>> $rest,
   )[] {}
 
   public function filter(
