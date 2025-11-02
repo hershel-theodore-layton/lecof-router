@@ -2,6 +2,7 @@
 namespace HTL\Lecof\Tests;
 
 use namespace HTL\LecofInterfaces;
+use namespace HH\Lib\Str;
 
 final class StringReverseParser
   implements LecofInterfaces\VariableParser<string> {
@@ -12,6 +13,6 @@ final class StringReverseParser
   }
 
   public function parse(string $raw)[]: VariableHolder<string> {
-    return new VariableHolder($this->name, $raw, \strrev($raw));
+    return new VariableHolder($this->name, $raw, Str\reverse($raw));
   }
 }
