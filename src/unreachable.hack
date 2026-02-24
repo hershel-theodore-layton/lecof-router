@@ -2,7 +2,7 @@
 namespace HTL\Lecof;
 
 use namespace HH\Lib\Str;
-use namespace HTL\LecofInterfaces;
+use namespace HTL\{HH4Shim, LecofInterfaces};
 use namespace HTL\Lecof\_Private;
 
 /**
@@ -24,6 +24,5 @@ function unreachable(
   Str\SprintfFormatString $format,
   mixed ...$args
 )[]: LecofInterfaces\Filter<nothing> {
-  invariant($format is string, 'Wink wink Hack, format strings are strings');
-  return new _Private\UnreachableFilter($format, $args);
+  return new _Private\UnreachableFilter(HH4Shim\to_mixed($format) as string, $args);
 }
