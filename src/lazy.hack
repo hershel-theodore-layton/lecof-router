@@ -10,7 +10,7 @@ use namespace HTL\Lecof\_Private;
  *
  * A powerful optimization primitive for large subtrees.
  * If the construction time of a routing tree becomes measurable, you can defer
- * and skip lot of object creation by creating a part you need when you need it.
+ * and skip a lot of object creation by creating a part you need when you need it.
  * By extracting a large subtree into a named free function and replacing the
  * subtree with `lazy(my_named_free_function<>)`, you don't construct objects
  * you don't need.
@@ -38,7 +38,7 @@ use namespace HTL\Lecof\_Private;
  * "lazily evaluated composition of filters". I despised libraries which
  * constructed a complex router on every request. That is why I preferred
  * codegenned routers. The developer experience of waiting for the codegen was
- * worth the overhead of not having the construct thousands of objects. With
+ * worth the overhead of not having to construct thousands of objects. With
  * this primitive, you can have your cake (a good dev experience) and eat it too
  * (good runtime performance).
  */

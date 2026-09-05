@@ -5,7 +5,7 @@ use namespace HTL\LecofInterfaces;
 use namespace HTL\Lecof\_Private;
 
 /**
- * Matching a single path segment case sensitively.
+ * Matching a single path segment (case-sensitive).
  * Do not prefix $literal with a slash: use `api`, NOT `/api`.
  */
 function literal<T>(

@@ -7,11 +7,11 @@ use namespace HTL\Lecof\_Private;
 
 /**
  * The equivalent of an `invariant()` call which is executed when a subtree is
- * reached. This can be used when the filters merged before should have matched
- * all possible cases.
- * If you know that the http method in your part of this tree must be either
- * GET or POST, because of the places it is used in. It is wise to fail loudly
- * if your assumption proves to be incorrect at runtime.
+ * reached. This can be used when the filters merged before it should have
+ * matched all possible cases.
+ * If you know that the HTTP method in your part of this tree must be either
+ * GET or POST because of where it is used, it is wise to fail loudly if your
+ * assumption proves to be incorrect at runtime.
  * ```
  * Lecof\merge(
  *   YourCode\get(...),

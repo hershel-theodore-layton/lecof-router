@@ -7,7 +7,7 @@ use namespace HTL\Lecof\_Private;
 /**
  * Consumes a single path segment.
  * If the $parser can not parse the segment, null is returned.
- * Else the $next will be called.
+ * Else, `$next` will be called.
  * If `$next->filter()` returns null, null is returned.
  * Else a `ParsedVariable` from `$parser->canParse()` is added to `RouteResult`.
  */

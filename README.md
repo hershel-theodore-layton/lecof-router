@@ -17,7 +17,7 @@ This router avoids the need for a build step as a performance primitive by
 using lazy evaluation. Constructing a full router for a complex application with
 many endpoints can take longer than the actual routing itself. Codegen addresses
 this issue by minimizing the amount of discovery that needs to be done on each
-request. This trades in a nice developer experience for memory and cpu on the
+request. This trades in a nice developer experience for memory and CPU on the
 server. I desperately want to reclaim the developer experience of adding a route
 without delay or needing to remember to run the codegen. This tiny package
 contains just enough primitives to allow you to express your routing needs in a
@@ -34,13 +34,13 @@ get started with lecof-router:
 
 A `RequestInfo` implementation is the only thing that is absolutely required.
 This class knows how to get the request information in your current version of
-hhvm. This class is intentionally not provided by this package, because this
+HHVM. This class is intentionally not provided by this package, because this
 is likely to change some time in the medium to far future. This is also the main
-customization point. If you need to route based on IP, cookies, url parameters,
+customization point. If you need to route based on IP, cookies, URL parameters,
 or something else, you can add it to your `RequestInfo` and access this
-information through the `->getByType<T>()` api.
+information through the `->getByType<T>()` API.
 
-_Everything beyond this point is strictly optional. You basic use skip to [Usage](#Usage)_
+_Everything beyond this point is strictly optional. For basic use skip to [Usage](#Usage)_
 
 If you wish to inject routing variables into your `RouteResult`, you must
 provide an implementation of `ParsedVariable`. You can use `reify` and only use
@@ -95,10 +95,10 @@ final class LiteralWithOptionalExtension<T as nonnull>
 ### Usage
 
 This example shows you what Lecof Router can do. The EntryPoint is probably
-close the minimal starter. You may decide to change the signature of your
+close to the minimal starter. You may decide to change the signature of your
 `MyEntryPointType` to better suit your needs. When migrating from an unrouted
 `__EntryPoint` application, it may be beneficial to use
-`(function(): Awaitable<void>)` for a while and dual purpose them as route
+`(function(): Awaitable<void>)` for a while and dual-purpose them as route
 targets and `__EntryPoint` targets. You'll have to put the parsed information
 into a static variable (just like `HH\\global_get()` is used).
 
@@ -116,7 +116,7 @@ async function my_web_entry_point_async(): Awaitable<void> {
     Lecof\done(web_index_async<>),
     // Only construct the /api subtree if we need it.
     Lecof\literal('api', Lecof\lazy(api_routes<>)),
-    // Static resource not found, we can short circuit here.
+    // Static resource not found, we can short-circuit here.
     Lecof\literal('static', Lecof\ignore_trailing_path(Lecof\done(
       four_oh_four_async<>,
     ))),
