@@ -2,7 +2,6 @@
 namespace HTL\Lecof;
 
 use namespace HTL\LecofInterfaces;
-use namespace HTL\Lecof\_Private;
 
 /**
  * Injects a variable without consuming a path segment

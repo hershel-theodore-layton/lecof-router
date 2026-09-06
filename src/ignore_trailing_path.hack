@@ -2,7 +2,6 @@
 namespace HTL\Lecof;
 
 use namespace HTL\LecofInterfaces;
-use namespace HTL\Lecof\_Private;
 
 /**
  * Consumes all the unconsumed path segments and calls `->filter()` on $next.

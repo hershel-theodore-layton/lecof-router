@@ -2,7 +2,6 @@
 namespace HTL\Lecof;
 
 use namespace HTL\LecofInterfaces;
-use namespace HTL\Lecof\_Private;
 
 /**
  * An optimized version of concatenating multiple literal() calls which would

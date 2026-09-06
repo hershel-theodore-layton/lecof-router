@@ -2,7 +2,6 @@
 namespace HTL\Lecof;
 
 use namespace HTL\LecofInterfaces;
-use namespace HTL\Lecof\_Private;
 
 /**
  * An optimized form of merging multiple consecutive `slashed_literal()` calls.

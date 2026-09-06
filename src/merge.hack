@@ -3,7 +3,6 @@ namespace HTL\Lecof;
 
 use namespace HH\Lib\C;
 use namespace HTL\LecofInterfaces;
-use namespace HTL\Lecof\_Private;
 
 /**
  * Glue two or more filters together.

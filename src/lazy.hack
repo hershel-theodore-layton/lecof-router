@@ -2,7 +2,6 @@
 namespace HTL\Lecof;
 
 use namespace HTL\LecofInterfaces;
-use namespace HTL\Lecof\_Private;
 
 /**
  * Calls $next (which constructs a subtree) and then calls `->filter()` on the

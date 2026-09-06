@@ -3,7 +3,6 @@ namespace HTL\Lecof;
 
 use namespace HH\Lib\Str;
 use namespace HTL\{HH4Shim, LecofInterfaces};
-use namespace HTL\Lecof\_Private;
 
 /**
  * The equivalent of an `invariant()` call which is executed when a subtree is
