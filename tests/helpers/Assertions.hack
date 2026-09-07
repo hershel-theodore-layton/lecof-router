@@ -3,8 +3,8 @@ namespace HTL\Lecof\Tests;
 
 use namespace HH\Lib\{Dict, PseudoRandom};
 use namespace HTL\LecofInterfaces;
-use function HTL\Expect\{expect, expect_invoked};
 use type Throwable;
+use function HTL\Expect\{expect, expect_invoked};
 
 final class Assertions {
   public function assertBails(

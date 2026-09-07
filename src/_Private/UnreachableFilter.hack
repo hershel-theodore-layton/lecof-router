@@ -2,6 +2,7 @@
 namespace HTL\Lecof\_Private;
 
 use namespace HTL\LecofInterfaces;
+use function vsprintf;
 
 final class UnreachableFilter implements LecofInterfaces\Filter<nothing> {
   public function __construct(
@@ -14,6 +15,6 @@ final class UnreachableFilter implements LecofInterfaces\Filter<nothing> {
     int $_index,
   )[self::CTX]: nothing {
     throw
-      new InvariantException(\vsprintf($this->format, $this->args) as string);
+      new InvariantException(vsprintf($this->format, $this->args) as string);
   }
 }

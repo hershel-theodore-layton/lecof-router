@@ -1,8 +1,8 @@
 /** lecof-router is MIT licensed, see /LICENSE. */
 namespace HTL\Lecof\Tests;
 
-use namespace HTL\LecofInterfaces;
 use namespace HH\Lib\Str;
+use namespace HTL\LecofInterfaces;
 
 final class StringReverseParser
   implements LecofInterfaces\VariableParser<string> {
