@@ -4,15 +4,15 @@ namespace HTL\Project_4PwQUZ8GatbO\GeneratedTestChain;
 use namespace HTL\TestChain;
 use type HTL\Pragma\Pragmas;
 
-<<file: Pragmas(vec['PhaLinters', 'digest:e31bc1e14bc8d1451d63'])>>
+<<file: Pragmas(vec['PhaLinters', 'digest:d2b32068b8e0c7976ab2'])>>
 
 async function tests_async(
   TestChain\ChainController<\HTL\TestChain\Chain> $controller,
 )[defaults]: Awaitable<TestChain\ChainController<\HTL\TestChain\Chain>> {
   return $controller
+    ->addTestGroup(\HTL\Lecof\Tests\add_variable_filter_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\done_filter_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\ignore_trailing_path_filter_test<>)
-    ->addTestGroup(\HTL\Lecof\Tests\inject_variable_filter_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\lazy_filter_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\literal_filter_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\literals_filter_test<>)

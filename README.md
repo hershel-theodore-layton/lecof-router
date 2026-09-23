@@ -140,7 +140,7 @@ function api_routes()[]: MyFilterType {
       ),
     ),
     'users' => Lecof\merge(
-      Lecof\inject_variable(
+      Lecof\add_variable(
         new GenericParsedVariable<int>('page_number', '1', 1),
         Lecof\done(api_response_users_on_page_async<>),
       ),

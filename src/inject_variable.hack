@@ -4,12 +4,13 @@ namespace HTL\Lecof;
 use namespace HTL\LecofInterfaces;
 
 /**
- * Injects a variable without consuming a path segment
- * and calls `->filter()` on $next.
+ * @deprecated consumes a path segment, use add_variable. If you depend on the
+ * skipping of the path segment, use add_variable_skip_path_segment to make your
+ * intent clear.
  */
 function inject_variable<T>(
   LecofInterfaces\ParsedVariable<mixed> $variable,
   LecofInterfaces\Filter<T> $next,
 )[]: LecofInterfaces\Filter<T> {
-  return new _Private\InjectVariableFilter($variable, $next);
+  return add_variable_skip_path_segment($variable, $next);
 }
