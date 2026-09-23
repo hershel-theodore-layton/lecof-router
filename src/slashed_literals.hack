@@ -5,7 +5,7 @@ use namespace HTL\LecofInterfaces;
 
 /**
  * An optimized form of merging multiple consecutive `slashed_literal()` calls.
- * `Lecof\merge(Lecof\slashed_literal('a/b', ...), Lecof\literal('c/d', ...))`
+ * `Lecof\merge(Lecof\slashed_literal('a/b', ...), Lecof\slashed_literal('c/d', ...))`
  * is equivalent to `Lecof\slashed_literals(dict['a/b' => ..., 'c/d' => ...])`.
  */
 function slashed_literals<T>(
