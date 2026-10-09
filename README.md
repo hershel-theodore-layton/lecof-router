@@ -104,12 +104,11 @@ close to the minimal starter. You may decide to change the signature of your
 targets and `__EntryPoint` targets. You'll have to put the parsed information
 into a static variable (just like `HH\\global_get()` is used).
 
-The example spans three files. Repeat the imports shown for each file and
-make `RequestVariables` and `MyFilterType` available in the route file.
-The application supplies `get_my_request_info_from_globals()`, returning a
+The example spans three files. The application supplies
+`get_my_request_info_from_globals()`, returning a
 `LecofInterfaces\RequestInfo`, and the `web_*_async`, `api_response_*_async`,
 and `four_oh_four_async` handlers, each taking `RequestVariables` and returning
-`Awaitable<void>`. The [request helper](tests/helpers/RequestInfo.hack) is a
+`Awaitable<void>`. The [request helper](https://github.com/hershel-theodore-layton/lecof-router/blob/master/tests/helpers/RequestInfo.hack) is a
 starting point for a path-only implementation.
 
 ```HACK
@@ -140,7 +139,6 @@ async function my_web_entry_point_async(): Awaitable<void> {
   list($route, $variables) = $router->filter($request_info, 0) ?? $default;
   await $route(Dict\from_values($variables, $v ==> $v->getName()));
 }
-
 ```
 
 In the route file:
@@ -180,7 +178,6 @@ function web_routes()[]: MyFilterType {
     // ...
   );
 }
-
 ```
 
 In the parser file:
