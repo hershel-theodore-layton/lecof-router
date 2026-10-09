@@ -4,7 +4,7 @@ namespace HTL\Project_4PwQUZ8GatbO\GeneratedTestChain;
 use namespace HTL\TestChain;
 use type HTL\Pragma\Pragmas;
 
-<<file: Pragmas(vec['PhaLinters', 'digest:d2b32068b8e0c7976ab2'])>>
+<<file: Pragmas(vec['PhaLinters', 'digest:ce3874e21858dab5f012'])>>
 
 async function tests_async(
   TestChain\ChainController<\HTL\TestChain\Chain> $controller,
@@ -19,6 +19,7 @@ async function tests_async(
     ->addTestGroup(\HTL\Lecof\Tests\merged_filter_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\null_filter_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\parse_variable_filter_test<>)
+    ->addTestGroup(\HTL\Lecof\Tests\request_info_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\slashed_literal_filter_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\slashed_literals_filter_test<>)
     ->addTestGroup(\HTL\Lecof\Tests\unreachable_filter_test<>);

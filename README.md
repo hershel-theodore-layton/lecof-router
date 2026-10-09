@@ -58,6 +58,8 @@ extension like `/about`, but they need to keep working with an extension for
 backwards compatibility. You can implement your own:
 
 ```HACK
+use namespace HTL\LecofInterfaces;
+
 function literal_with_optional_extension<T as nonnull>(
   string $literal,
   string $extension,
@@ -102,7 +104,18 @@ close to the minimal starter. You may decide to change the signature of your
 targets and `__EntryPoint` targets. You'll have to put the parsed information
 into a static variable (just like `HH\\global_get()` is used).
 
+The example spans three files. Repeat the imports shown for each file and
+make `RequestVariables` and `MyFilterType` available in the route file.
+The application supplies `get_my_request_info_from_globals()`, returning a
+`LecofInterfaces\RequestInfo`, and the `web_*_async`, `api_response_*_async`,
+and `four_oh_four_async` handlers, each taking `RequestVariables` and returning
+`Awaitable<void>`. The [request helper](tests/helpers/RequestInfo.hack) is a
+starting point for a path-only implementation.
+
 ```HACK
+use namespace HH\Lib\Dict;
+use namespace HTL\{Lecof, LecofInterfaces};
+
 type RequestVariables = dict<string, LecofInterfaces\ParsedVariable<mixed>>;
 type MyEntryPointType = (function(RequestVariables): Awaitable<void>);
 type MyFilterType = LecofInterfaces\Filter<MyEntryPointType>;
@@ -128,7 +141,12 @@ async function my_web_entry_point_async(): Awaitable<void> {
   await $route(Dict\from_values($variables, $v ==> $v->getName()));
 }
 
-// Some other file
+```
+
+In the route file:
+
+```HACK
+use namespace HTL\Lecof;
 
 function api_routes()[]: MyFilterType {
   return Lecof\literals(dict[
@@ -163,7 +181,13 @@ function web_routes()[]: MyFilterType {
   );
 }
 
-// Another file
+```
+
+In the parser file:
+
+```HACK
+use namespace HH\Lib\Str;
+use namespace HTL\LecofInterfaces;
 
 final class IntegerParser implements LecofInterfaces\VariableParser<int> {
   public function __construct(private string $name)[] {}
@@ -171,11 +195,11 @@ final class IntegerParser implements LecofInterfaces\VariableParser<int> {
     return Str\to_int($raw) is nonnull;
   }
   public function parse(string $raw)[]: LecofInterfaces\ParsedVariable<int> {
-    return new GenericParsedVariable<int>(
-      $this->name,
-      $raw,
-      Str\to_int($raw) as nonnull,
-    );
+    $value = Str\to_int($raw);
+    if ($value is null) {
+      throw new \InvalidArgumentException('Expected an integer');
+    }
+    return new GenericParsedVariable<int>($this->name, $raw, $value);
   }
 }
 

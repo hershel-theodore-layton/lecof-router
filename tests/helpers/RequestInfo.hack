@@ -26,8 +26,8 @@ final class RequestInfo implements LecofInterfaces\RequestInfo {
       |> $$ === vec[''] ? vec[] : $$;
   }
 
-  public function getByType<reify T>()[]: nothing {
-    invariant_violation('No extensions available');
+  public function getByType<reify T>()[]: ?T {
+    return null;
   }
 
   public function getByTypex<reify T>()[]: nothing {
