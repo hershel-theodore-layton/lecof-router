@@ -104,13 +104,6 @@ close to the minimal starter. You may decide to change the signature of your
 targets and `__EntryPoint` targets. You'll have to put the parsed information
 into a static variable (just like `HH\\global_get()` is used).
 
-The example spans three files. The application supplies
-`get_my_request_info_from_globals()`, returning a
-`LecofInterfaces\RequestInfo`, and the `web_*_async`, `api_response_*_async`,
-and `four_oh_four_async` handlers, each taking `RequestVariables` and returning
-`Awaitable<void>`. The [request helper](https://github.com/hershel-theodore-layton/lecof-router/blob/master/tests/helpers/RequestInfo.hack) is a
-starting point for a path-only implementation.
-
 ```HACK
 use namespace HH\Lib\Dict;
 use namespace HTL\{Lecof, LecofInterfaces};
