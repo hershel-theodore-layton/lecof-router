@@ -23,5 +23,6 @@ function unreachable(
   Str\SprintfFormatString $format,
   mixed ...$args
 )[]: LecofInterfaces\Filter<nothing> {
-  return new _Private\UnreachableFilter(HH4Shim\to_mixed($format) as string, $args);
+  return
+    new _Private\UnreachableFilter(HH4Shim\to_mixed($format) as string, $args);
 }

@@ -4,9 +4,7 @@ namespace HTL\Lecof\Tests;
 use namespace HTL\{Lecof, TestChain};
 
 <<TestChain\Discover>>
-function add_variable_filter_test(
-  TestChain\Chain $chain,
-)[]: TestChain\Chain {
+function add_variable_filter_test(TestChain\Chain $chain)[]: TestChain\Chain {
   $assert = new Assertions();
 
   return $chain->group(__FUNCTION__)
