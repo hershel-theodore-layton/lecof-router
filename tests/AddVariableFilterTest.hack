@@ -115,24 +115,25 @@ function add_variable_filter_test(TestChain\Chain $chain)[]: TestChain\Chain {
       );
       $assert->assertBails($filter, $assert->request('/api/users/123/extra'));
     })
-    ->test('test_explicit_skip_matches_legacy_behavior', () ==> {
-      $variable = new VariableHolder('var', 'hi', 'hello');
-      foreach (
-        vec[
-          Lecof\inject_variable($variable, Lecof\literal('users', Lecof\done(42))),
-          Lecof\add_variable_skip_path_segment(
-            $variable,
-            Lecof\literal('users', Lecof\done(42)),
+    ->testWith2Params(
+      'test_explicit_skip_matches_legacy_behavior',
+      () ==> {
+        $variable = new VariableHolder('var', 'hi', 'hello');
+        return dict[
+          'legacy inject_variable' => tuple(
+            Lecof\inject_variable($variable, Lecof\literal('users', Lecof\done(42))),
+            dict['var' => 'hello'],
           ),
-        ] as $filter
-      ) {
+          'explicit add_variable_skip_path_segment' => tuple(
+            Lecof\add_variable_skip_path_segment($variable, Lecof\literal('users', Lecof\done(42))),
+            dict['var' => 'hello'],
+          ),
+        ];
+      },
+      ($filter, $variables) ==> {
         $assert->assertBails($filter, $assert->request('/users'));
         $assert->assertReturns($filter, $assert->request('/skipped/users'), 42);
-        $assert->assertHasVariables(
-          $filter,
-          $assert->request('/skipped/users'),
-          dict['var' => 'hello'],
-        );
-      }
-    });
+        $assert->assertHasVariables($filter, $assert->request('/skipped/users'), $variables);
+      },
+    );
 }

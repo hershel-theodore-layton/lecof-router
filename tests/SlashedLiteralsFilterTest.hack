@@ -59,36 +59,38 @@ function slashed_literals_filter_test(
         );
       },
     )
-    ->test('test_preserves_decoded_segment_boundaries', () ==> {
-      foreach (
-        dict[
-          '/a%2Fb' => 'a/b',
-          '/a%2fb' => 'a/b',
-          '/a%2F/b' => 'a//b',
-          '/%2F' => '/',
-        ] as $path => $pattern
-      ) {
+    ->testWith2Params(
+      'test_bails_when_decoding_would_change_segment_boundaries',
+      () ==> dict[
+        '/a%2Fb' => tuple('/a%2Fb', 'a/b'),
+        '/a%2fb' => tuple('/a%2fb', 'a/b'),
+        '/a%2F/b' => tuple('/a%2F/b', 'a//b'),
+        '/%2F' => tuple('/%2F', '/'),
+      ],
+      (string $path, string $pattern) ==> {
         $assert->assertBails(
           Lecof\slashed_literals(dict[$pattern => Lecof\done(42)]),
           $assert->request($path),
         );
-      }
-      foreach (
-        dict[
-          '/a/b' => 'a/b',
-          '/a//b' => 'a//b',
-          '/%30' => '0',
-          '/a%252Fb' => 'a%2Fb',
-          '/a/b/' => 'a/b/',
-        ] as $path => $pattern
-      ) {
+      },
+    )
+    ->testWith2Params(
+      'test_forwards_when_decoded_segments_match',
+      () ==> dict[
+        '/a/b' => tuple('/a/b', 'a/b'),
+        '/a//b' => tuple('/a//b', 'a//b'),
+        '/%30' => tuple('/%30', '0'),
+        '/a%252Fb' => tuple('/a%252Fb', 'a%2Fb'),
+        '/a/b/' => tuple('/a/b/', 'a/b/'),
+      ],
+      (string $path, string $pattern) ==> {
         $assert->assertReturns(
           Lecof\slashed_literals(dict[$pattern => Lecof\done(42)]),
           $assert->request($path),
           42,
         );
-      }
-    })
+      },
+    )
     ->test('test_bails_on_a_partial_match', () ==> {
       $assert->assertBails(
         Lecof\slashed_literals(dict[
