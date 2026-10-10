@@ -8,7 +8,7 @@ use namespace HTL\LecofInterfaces;
  * If the $parser can not parse the segment, null is returned.
  * Else, `$next` will be called.
  * If `$next->filter()` returns null, null is returned.
- * Else a `ParsedVariable` from `$parser->canParse()` is added to `RouteResult`.
+ * Else a `ParsedVariable` from `$parser->parse()` is added to `RouteResult`.
  */
 function parse_variable<T>(
   LecofInterfaces\VariableParser<mixed> $parser,

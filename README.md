@@ -40,6 +40,21 @@ customization point. If you need to route based on IP, cookies, URL parameters,
 or something else, you can add it to your `RequestInfo` and access this
 information through the `->getByType<T>()` API.
 
+Follow the [RequestInfo path contract](https://github.com/hershel-theodore-layton/lecof-router-interfaces/blob/master/src/RequestInfo.hack):
+split the URI path on raw `/`, then URL-decode each segment once. Remove one
+leading slash; the empty path and `/` have no segments. Keep other empty and
+trailing segments, and exclude query and fragment text. For example, `/a%2Fb`
+is `vec['a/b']`, whereas `/a/b` is `vec['a', 'b']`. Never split a decoded segment
+again. `urldecode()` also turns `+` into a space.
+
+Route literals use decoded segment values: `literal('a/b', ...)` matches the
+former; nested literals `'a'`, `'b'` or `slashed_literal('a/b', ...)` match the
+latter. Slashed route patterns use `/` as a segment separator; match a slash
+inside a segment with an individual `literal()` instead.
+
+Variable parsers receive decoded segment text, and preserve that supplied text
+in `getRawValue()`. Do not URL-decode it again: `/a%252Fb` is already `a%2Fb`.
+
 _Everything beyond this point is strictly optional. For basic use skip to [Usage](#Usage)_
 
 If you wish to inject routing variables into your `RouteResult`, you must

@@ -8,6 +8,9 @@ use namespace HTL\LecofInterfaces;
  * consume the entire path.
  * `Lecof\literal('a', Lecof\literal('b', Lecof\done(...)))` is equivalent to
  * `Lecof\slashed_literal('a/b', Lecof\done())`.
+ * Split $literal on `/` into decoded segment values to match individually.
+ * `a/b` matches `/a/b`, not the one-segment path `/a%2Fb`.
+ * Use `literal('a/b', ...)` to match a slash inside a decoded segment.
  * If the entire path would not be consumed by `slashed_literal()` null will
  * be returned. You can not do a partial match like:
  * `Lecof\slashed_literal('a/b', Lecof\literal('c', ...))`, since `a/b` would

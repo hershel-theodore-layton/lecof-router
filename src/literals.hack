@@ -7,6 +7,7 @@ use namespace HTL\LecofInterfaces;
  * An optimized version of merging multiple consecutive `literal()` calls.
  * `Lecof\merge(Lecof\literal('a', ...), Lecof\literal('b', ...))` is equivalent
  * to `Lecof\literals(dict['a' => ..., 'b' => ...])`.
+ * Keys use the same decoded, case-sensitive segment text as `literal()`.
  * Do not prefix $literal with a slash: use `api`, NOT `/api`.
  */
 function literals<T>(

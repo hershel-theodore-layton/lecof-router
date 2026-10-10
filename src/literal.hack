@@ -5,7 +5,9 @@ use namespace HTL\LecofInterfaces;
 
 /**
  * Matching a single path segment (case-sensitive).
- * Do not prefix $literal with a slash: use `api`, NOT `/api`.
+ * $literal is decoded segment text: `a/b` matches `/a%2Fb`, not `/a/b`.
+ * A leading slash in $literal is segment content, not a path separator.
+ * For `/api`, use `api`, not `/api`.
  */
 function literal<T>(
   string $literal,

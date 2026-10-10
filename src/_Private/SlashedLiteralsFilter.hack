@@ -1,7 +1,7 @@
 /** lecof-router is MIT licensed, see /LICENSE. */
 namespace HTL\Lecof\_Private;
 
-use namespace HH\Lib\C;
+use namespace HH\Lib\{C, Str};
 use namespace HTL\LecofInterfaces;
 
 final class SlashedLiteralsFilter<+T> implements LecofInterfaces\Filter<T> {
@@ -19,6 +19,10 @@ final class SlashedLiteralsFilter<+T> implements LecofInterfaces\Filter<T> {
 
     $segment = $request_info->getPathSegmentsAsString($index);
     if (!C\contains_key($this->children, $segment)) {
+      return null;
+    }
+
+    if ($request_info->getPathSegments($index) !== Str\split($segment, '/')) {
       return null;
     }
 

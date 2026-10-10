@@ -14,16 +14,23 @@ namespace HTL\Lecof\Tests;
 use namespace HH\Lib\{C, Str, Vec};
 use namespace HTL\LecofInterfaces;
 use type HTL\Pragma\Pragmas;
+use function urldecode;
 
 <<file: Pragmas(vec['PhaLinters', 'fixme:license_header'])>>
 
 final class RequestInfo implements LecofInterfaces\RequestInfo {
   private vec<string> $segments;
 
+  /**
+   * $path is the URI path component, excluding query and fragment.
+   * Split on raw `/`, then URL-decode each segment once.
+   * For example, `/a%2Fb` has one segment `a/b`, not two segments `a`, `b`.
+   */
   public function __construct(string $path)[] {
     $this->segments = Str\strip_prefix($path, '/')
       |> Str\split($$, '/')
-      |> $$ === vec[''] ? vec[] : $$;
+      |> $$ === vec[''] ? vec[] : $$
+      |> Vec\map($$, urldecode<>);
   }
 
   public function getByType<reify T>()[]: ?T {
